@@ -1,0 +1,1 @@
+ALTER TABLE public.contrato_minuta ADD minuta TEXT;

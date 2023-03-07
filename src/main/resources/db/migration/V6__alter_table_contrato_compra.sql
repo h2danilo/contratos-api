@@ -1,0 +1,1 @@
+ ALTER TABLE public.contrato_compra ADD emissao date;
