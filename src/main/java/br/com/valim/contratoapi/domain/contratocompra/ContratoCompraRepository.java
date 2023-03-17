@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ContratoCompraRepository extends JpaRepository<ContratoCompra, Long>, JpaSpecificationExecutor<ContratoCompra> {
-    @Query(value = "SELECT MAX(numero) FROM contratos_compra  WHERE filial_id = :filialId", nativeQuery = true)
+    @Query(value = "SELECT COALESCE(MAX(numero), '1') FROM contrato_compra", nativeQuery = true)
     String getUltimoNumero(@Param("filialId") Long filialId);
+
 }

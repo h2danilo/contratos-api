@@ -104,4 +104,6 @@ public class ContratoMinutaService implements GenericService<ContratoMinuta, Con
 
         return params;
     }
+
+
 }

@@ -1,5 +1,6 @@
 package br.com.valim.contratoapi.api;
 
+import br.com.valim.contratoapi.exceptions.ContratoMinutaException;
 import br.com.valim.contratoapi.responses.ApiErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
@@ -57,6 +58,12 @@ public class ApplicationControllerAdvice {
     @ExceptionHandler(MissingRequestHeaderException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiErrorResponse handleIMissingRequestHeaderException(MissingRequestHeaderException e) {
+        return new ApiErrorResponse("400", e.getMessage());
+    }
+
+    @ExceptionHandler(ContratoMinutaException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public ApiErrorResponse handleContratoMinutaException(ContratoMinutaException e) {
         return new ApiErrorResponse("400", e.getMessage());
     }
 }

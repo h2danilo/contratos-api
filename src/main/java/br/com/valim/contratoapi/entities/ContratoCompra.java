@@ -3,6 +3,8 @@ package br.com.valim.contratoapi.entities;
 import br.com.valim.contratoapi.enums.TipoFreteEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -43,6 +45,10 @@ public class ContratoCompra extends BaseEntity {
     private BigDecimal quantidade;
 
     @ManyToOne
+    @JoinColumn(name = "contrato_minuta_id", nullable = false)
+    private ContratoMinuta contratoMinuta;
+
+    @ManyToOne
     @JoinColumn(name = "unidade_medida_codigo", nullable = false)
     private UnidadeMedida unidadeMedida;
 
@@ -80,4 +86,10 @@ public class ContratoCompra extends BaseEntity {
 
     @Column(name = "data_pagamento")
     private LocalDate dataPagamento;
+
+    @Column(name = "contrato_pdf", columnDefinition = "TEXT")
+    private String contratoPdfBase64;
+
+    @Column(name = "docusign_document_id")
+    private String docuSignDocumentId;
 }
